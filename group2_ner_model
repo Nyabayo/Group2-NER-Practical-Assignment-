@@ -1,0 +1,29 @@
+
+
+import spacy
+
+def perform_ner(user_input):
+    """
+    Perform Named Entity Recognition (NER) on the provided user input using a pre-trained spaCy model.
+
+    Args:
+    user_input (str): A string of text provided by the user for NER.
+
+    """
+    # Load the pre-trained spaCy model
+    nlp = spacy.load("en_core_web_sm")
+    
+    # Process the text
+    doc = nlp(user_input)
+
+    # Check if there are any entities detected
+    if doc.ents:
+        print("Recognized Entities:")
+        for ent in doc.ents:
+            print(f"{ent.text}: {ent.label_}")
+    else:
+        print("No entities detected in the input.")
+
+# Prompt user for input
+user_input = input("Enter a sentence for NER: ")
+perform_ner(user_input)
